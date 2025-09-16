@@ -13,6 +13,7 @@ module.exports = {
       return user;
     },
     login: (_, { email, password }) => {
+      console.log("Tentativa de login:", { email, password });
       const result = userService.authenticate(email, password);
       if (!result) throw new Error('Credenciais inválidas');
       return result;

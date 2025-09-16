@@ -29,7 +29,7 @@ jobs:
       run: npm run test
 
     - name: Start GraphQL API
-      run: npm start &
+      run: node graphql/server.js & 
 
     - name: Wait for API
       run: sleep 5

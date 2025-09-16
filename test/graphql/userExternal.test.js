@@ -25,7 +25,9 @@ describe('Transfer Mutation - GraphQL', () => {
 
         token = resposta.body.data?.login?.token;
         // console.log("Token retornado pelo login:", token);
-    })
+        console.log("Resposta do login:", JSON.stringify(resposta.body, null, 2));
+
+      })
 
      
     it('Quando informo dados válidos o registro do usuario é realizada com sucesso', async () => {
@@ -102,12 +104,12 @@ describe('Transfer Mutation - GraphQL', () => {
       expect(checkout.items[1]).to.have.property("quantity", 1);
     });
 
-  it('Deve realizar checkout com cartão de crédito com sucesso', async () => {
-    const resposta = await request('http://localhost:4000')
-      .post('/graphql')
-      .set('Authorization', `Bearer ${token}`)
-      .send({
-        query: `
+    it('Deve realizar checkout com cartão de crédito com sucesso', async () => {
+      const resposta = await request('http://localhost:4000')
+        .post('/graphql')
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+         query: `
           mutation Checkout(
             $items: [CheckoutItemInput!]!,
             $freight: Float!,
@@ -146,20 +148,20 @@ describe('Transfer Mutation - GraphQL', () => {
         }
       });
 
-     // console.log("Resposta GraphQL:", JSON.stringify(resposta.body, null, 2));
+      // console.log("Resposta GraphQL:", JSON.stringify(resposta.body, null, 2));
 
-    expect(resposta.status).to.equal(200);
+      expect(resposta.status).to.equal(200);
 
-    const checkout = resposta.body.data.checkout;
-    expect(checkout).to.have.property("valorFinal");
-    expect(checkout).to.have.property("paymentMethod", "credit_card");
-    expect(checkout).to.have.property("freight", 10);
-    expect(checkout.items).to.be.an("array").with.length(2);
-    expect(checkout.items[0]).to.have.property("productId", 1);
-    expect(checkout.items[0]).to.have.property("quantity", 2);
-    expect(checkout.items[1]).to.have.property("productId", 2);
-    expect(checkout.items[1]).to.have.property("quantity", 1);
-  });
+      const checkout = resposta.body.data.checkout;
+      expect(checkout).to.have.property("valorFinal");
+      expect(checkout).to.have.property("paymentMethod", "credit_card");
+      expect(checkout).to.have.property("freight", 10);
+      expect(checkout.items).to.be.an("array").with.length(2);
+      expect(checkout.items[0]).to.have.property("productId", 1);
+      expect(checkout.items[0]).to.have.property("quantity", 2);
+      expect(checkout.items[1]).to.have.property("productId", 2);
+      expect(checkout.items[1]).to.have.property("quantity", 1);
+    });
 
 });
  
