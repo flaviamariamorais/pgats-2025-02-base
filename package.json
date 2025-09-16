@@ -4,9 +4,8 @@
   "description": "Esta API permite o registro de usuario",
   "main": "app.js",
   "scripts": {
-    "test": "npm run test:unit && npm run test:external",
-    "test:unit": "mocha \"test/unit/**/*.test.js\" --timeout 10000",
-    "test:external": "mocha \"test/graphql/**/*.test.js\" --timeout 10000",
+    "test": "npm run test:external",
+    "test:external": "mocha \"test/**/*.test.js\" --timeout 10000",
     "start": "node graphql/server.js"
   },
   "repository": {
