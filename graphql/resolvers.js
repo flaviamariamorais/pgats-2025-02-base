@@ -21,6 +21,7 @@ module.exports = {
       const { userData } = context;
       if (!userData) throw new Error('Token inválido');
       const result = checkoutService.checkout(userData.id, items, freight, paymentMethod, cardData);
+       if (!result) throw new Error('Erro no checkout');
       return { ...result, valorFinal: result.total };
     }
   }
