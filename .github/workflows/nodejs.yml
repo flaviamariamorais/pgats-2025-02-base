@@ -25,8 +25,8 @@ jobs:
       run: npm install
 
     
-    - name: Run GraphQL controller tests
-      run: npm run test-controller
+    - name: Run GraphQL tests
+      run: npm run test
 
     - name: Start GraphQL API
       run: npm start &
