@@ -216,3 +216,7 @@ Acesse o playground GraphQL em [http://localhost:4000/graphql](http://localhost:
 ## Documentação
 - Swagger disponível em `/api-docs`
 - Playground GraphQL disponível em `/graphql`
+
+
+echo "teste pipeline" 
+teste pipeline
