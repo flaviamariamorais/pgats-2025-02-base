@@ -219,4 +219,4 @@ Acesse o playground GraphQL em [http://localhost:4000/graphql](http://localhost:
 
 
 echo "teste pipeline" 
-teste pipeline
+teste pipeline novo
