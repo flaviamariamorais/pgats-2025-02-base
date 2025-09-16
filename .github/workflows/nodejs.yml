@@ -22,14 +22,14 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    # Roda os testes internos (não dependem da API rodando)
-    - name: Run GraphQL unit tests
-      run: npm run test
+    # Roda apenas testes unitários (não dependem da API rodando)
+    - name: Run unit tests
+      run: npm run test:unit
 
-    # Instala start-server-and-test para garantir que API esteja no ar antes dos testes externos
+    # Instala start-server-and-test para sincronizar API e testes externos
     - name: Install start-server-and-test
       run: npm install -g start-server-and-test
 
-    # Sobe a API e roda os testes externos
-    - name: Run GraphQL external tests
-      run: start-server-and-test "node graphql/server.js" http://localhost:4000 "npm run test-external"
+    # Sobe a API e roda os testes externos (que chamam localhost:4000)
+    - name: Run external GraphQL tests
+      run: start-server-and-test "node graphql/server.js" http://localhost:4000 "npm run test:external"
