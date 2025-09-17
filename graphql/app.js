@@ -23,6 +23,12 @@ const server = new ApolloServer({
 async function startApollo() {
   await server.start();
   server.applyMiddleware({ app, path: '/graphql' });
+
+   // ✅ Rota de verificação para o CI
+  app.get('/', (req, res) => {
+    res.status(200).send('Servidor GraphQL está rodando 🚀');
+  });
+  
 }
 
 startApollo();
